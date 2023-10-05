@@ -24,12 +24,17 @@ class _PianoKeyState extends State<PianoKey> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
-          minimumSize: const Size(10, 50),
+          minimumSize: const Size(120, 50),
         ),
         onPressed: () async {
           await player.play(AssetSource('sounds/my_sound.mp3'));
         },
-        child: Text('Play Sound'),
+        child: RotatedBox(
+            quarterTurns: -1,
+            child: Text(
+              widget.keyName,
+              style: TextStyle(color: Color(0xFF00A6FF)),
+            )),
       ),
     );
   }
