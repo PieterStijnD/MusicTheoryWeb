@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:music_theory_app/piano/piano.dart';
+import 'package:music_theory_app/theory/basic_theory.dart';
+import 'package:music_theory_app/tools/piano/piano.dart';
+import 'package:music_theory_app/tools/tools_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,16 +51,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _selectedIndex = 0;
 
-  void _incrementCounter() {
+  void _onItemTapped(int i) {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      _selectedIndex == i;
     });
   }
 
@@ -75,6 +77,59 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+      ),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Menu'),
+            ),
+            ListTile(
+              title: const Text('Theory'),
+              selected: _selectedIndex == 0,
+              onTap: () {
+                _onItemTapped(0);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const BasicTheoryPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Practice'),
+              selected: _selectedIndex == 1,
+              onTap: () {
+                _onItemTapped(1);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const BasicTheoryPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Tools'),
+              selected: _selectedIndex == 2,
+              onTap: () {
+                _onItemTapped(2);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const Piano(),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -95,22 +150,10 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Piano(),
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+          children: const <Widget>[
+            Piano(),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment it',
-        child: const Icon(Icons.add),
       ),
     );
   }

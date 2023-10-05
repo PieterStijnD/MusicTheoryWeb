@@ -1,5 +1,4 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PianoKey extends StatefulWidget {
@@ -16,25 +15,33 @@ class PianoKey extends StatefulWidget {
 class _PianoKeyState extends State<PianoKey> {
   final player = AudioPlayer();
 
+  double calculateHeight(Color color) {
+    return color == const Color(0xFF000000) ? 60.0 : 150.0;
+  }
+  double calculateWidth(Color color) {
+    return color == const Color(0xFF000000) ? 20.0 : 40.0;
+  }
+
   @override
   Widget build(BuildContext context) {
     final color = widget.color;
-    return RotatedBox(
-      quarterTurns: 1,
+    final height = calculateHeight(color);
+    final width = calculateWidth(color);
+
+    return Container(
+      width: width,
+      height: height,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
-          minimumSize: const Size(120, 50),
         ),
         onPressed: () async {
           await player.play(AssetSource('sounds/my_sound.mp3'));
         },
-        child: RotatedBox(
-            quarterTurns: -1,
-            child: Text(
-              widget.keyName,
-              style: TextStyle(color: Color(0xFF00A6FF)),
-            )),
+        child: Text(
+          widget.keyName,
+          style: TextStyle(color: Color(0xFF00A6FF)),
+        ),
       ),
     );
   }
