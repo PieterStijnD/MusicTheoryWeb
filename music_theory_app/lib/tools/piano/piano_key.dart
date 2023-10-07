@@ -18,8 +18,13 @@ class _PianoKeyState extends State<PianoKey> {
   double calculateHeight(Color color) {
     return color == const Color(0xFF000000) ? 60.0 : 150.0;
   }
+
   double calculateWidth(Color color) {
     return color == const Color(0xFF000000) ? 20.0 : 40.0;
+  }
+
+  String setText(Color color) {
+    return color == const Color(0xFF000000) ? "" : widget.keyName;
   }
 
   @override
@@ -27,6 +32,7 @@ class _PianoKeyState extends State<PianoKey> {
     final color = widget.color;
     final height = calculateHeight(color);
     final width = calculateWidth(color);
+    final text = setText(widget.color);
 
     return Container(
       width: width,
@@ -39,7 +45,7 @@ class _PianoKeyState extends State<PianoKey> {
           await player.play(AssetSource('sounds/my_sound.mp3'));
         },
         child: Text(
-          widget.keyName,
+          text,
           style: TextStyle(color: Color(0xFF00A6FF)),
         ),
       ),
