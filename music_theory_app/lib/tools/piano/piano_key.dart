@@ -45,7 +45,7 @@ class _PianoKeyState extends State<PianoKey> {
         ),
         onPressed: () async {
           debugPrint("Pressed Key $fullNote");
-          String fileSource = "assets/piano-88/piano-$fullNote.wav";
+          String fileSource = "assets/piano_88/piano-$fullNote.wav";
           await player.play(DeviceFileSource(fileSource)); // will immediately start playing
           // await player.play(AssetSource('music_theory_app/assets/24-piano-keys/key01.mp3'));
         },
