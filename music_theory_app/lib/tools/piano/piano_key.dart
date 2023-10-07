@@ -24,7 +24,8 @@ class _PianoKeyState extends State<PianoKey> {
   }
 
   String setText(Color color) {
-    return color == const Color(0xFF000000) ? "" : widget.keyName;
+    String string = widget.keyName;
+    return color == const Color(0xFF000000) ? "" : string.substring(0, string.length - 1);
   }
 
   @override
@@ -33,6 +34,7 @@ class _PianoKeyState extends State<PianoKey> {
     final height = calculateHeight(color);
     final width = calculateWidth(color);
     final text = setText(widget.color);
+    final fullNote = widget.keyName;
 
     return Container(
       width: width,
@@ -42,7 +44,10 @@ class _PianoKeyState extends State<PianoKey> {
           backgroundColor: color,
         ),
         onPressed: () async {
-          await player.play(AssetSource('sounds/my_sound.mp3'));
+          debugPrint("Pressed Key $fullNote");
+          String fileSource = "assets/piano-88/piano-$fullNote.wav";
+          await player.play(DeviceFileSource(fileSource)); // will immediately start playing
+          // await player.play(AssetSource('music_theory_app/assets/24-piano-keys/key01.mp3'));
         },
         child: Text(
           text,
