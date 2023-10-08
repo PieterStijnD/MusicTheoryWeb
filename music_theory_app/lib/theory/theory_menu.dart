@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../shared_assets/menu_button.dart';
+import '../shared_assets/menu_row.dart';
 
 class TheoryMenu extends StatelessWidget {
   @override
@@ -9,22 +10,21 @@ class TheoryMenu extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                MenuButton(
-                  listTileName: 'First Tile',
-                  icon: Icon(Icons.looks_one),
-                ),
-                MenuButton(
-                  listTileName: 'Second Tile',
-                  icon: Icon(Icons.looks_two),
-                ),
-                MenuButton(
-                  listTileName: 'Third Tile',
-                  icon: Icon(Icons.looks_3),
-                ),
+          children: const [
+            MenuRow(
+              menuButtons: [
+                {
+                  "listTileName": "Note Names",
+                  "icon": Icon(Icons.music_note),
+                },
+                {
+                  "listTileName": "Intervals",
+                  "icon": Icon(Icons.music_note),
+                },
+                {
+                  "listTileName": "Scales",
+                  "icon": Icon(Icons.music_note),
+                },
               ],
             ),
           ],
