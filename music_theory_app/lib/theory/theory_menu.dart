@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../shared_assets/menu_button.dart';
+
 class TheoryMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -8,8 +10,10 @@ class TheoryMenu extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Theory Menu',
+            Row(
+              children: [
+                MenuButton(),
+              ],
             ),
           ],
         ),
@@ -17,3 +21,5 @@ class TheoryMenu extends StatelessWidget {
     );
   }
 }
+
+
