@@ -29,6 +29,12 @@ class _PianoKeyState extends State<PianoKey> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    player.setSource(DeviceFileSource("assets/piano_88/piano-${widget.keyName}.wav"));
+  }
+
+  @override
   Widget build(BuildContext context) {
     final color = widget.color;
     final height = calculateHeight(color);
@@ -45,9 +51,7 @@ class _PianoKeyState extends State<PianoKey> {
         ),
         onPressed: () async {
           debugPrint("Pressed Key $fullNote");
-          String fileSource = "assets/piano_88/piano-$fullNote.wav";
-          await player.play(DeviceFileSource(fileSource)); // will immediately start playing
-          // await player.play(AssetSource('music_theory_app/assets/24-piano-keys/key01.mp3'));
+          await player.play(DeviceFileSource("assets/piano_88/piano-$fullNote.wav"));
         },
         child: Text(
           text,
