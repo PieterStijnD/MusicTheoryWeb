@@ -11,8 +11,15 @@ class TheoryMenu extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Row(
-              children: [
-                MenuButton(),
+              children: const [
+                MenuButton(
+                  listTileName: 'First Tile',
+                  icon: Icon(Icons.looks_one),
+                ),
+                MenuButton(
+                  listTileName: 'Second Tile',
+                  icon: Icon(Icons.looks_two),
+                ),
               ],
             ),
           ],
@@ -21,5 +28,3 @@ class TheoryMenu extends StatelessWidget {
     );
   }
 }
-
-
