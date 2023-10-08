@@ -40,7 +40,6 @@ class _PianoKeyState extends State<PianoKey> {
     final height = calculateHeight(color);
     final width = calculateWidth(color);
     final text = setText(widget.color);
-    final fullNote = widget.keyName;
 
     return Container(
       width: width,
@@ -50,8 +49,7 @@ class _PianoKeyState extends State<PianoKey> {
           backgroundColor: color,
         ),
         onPressed: () async {
-          debugPrint("Pressed Key $fullNote");
-          await player.play(DeviceFileSource("assets/piano_88/piano-$fullNote.wav"));
+          await player.resume();
         },
         child: Text(
           text,
