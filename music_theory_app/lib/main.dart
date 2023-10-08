@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:music_theory_app/theory/theory_menu.dart';
 import 'package:music_theory_app/tools/piano/piano.dart';
+
+import 'practice/practice_menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,14 +35,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 2;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 1: Theory',
-    ),
-    Text(
-      'Index 2: Practice',
-    ),
-    Piano(),
+  static final List<Widget> _widgetOptions = <Widget>[
+    TheoryMenu(),
+    PracticeMenu(),
+    const Piano(),
   ];
 
   void _onItemTapped(int index) {
