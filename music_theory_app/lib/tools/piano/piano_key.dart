@@ -45,6 +45,7 @@ class _PianoKeyState extends State<PianoKey> {
       width: width,
       height: height,
       child: ElevatedButton(
+        //TODO move text to lower part of key
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
         ),
