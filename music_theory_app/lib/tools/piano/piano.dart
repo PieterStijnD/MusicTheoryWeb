@@ -15,7 +15,7 @@ class Piano extends StatelessWidget {
         SizedBox(
           width: 300.0,
           child: Stack(
-            //alignment:new Alignment(x, y)
+            // TODO make keys react to keyboard ASDFGHJ ?
             children: const <Widget>[
               PianoKey(keyName: "C4", color: Color(0xFFFFFFFF)),
               Positioned(
